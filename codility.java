@@ -148,3 +148,48 @@ class Solution {
     }
 }
 
+//XYSplit
+// you can also use imports, for example:
+import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int solution(String S) {
+        // Implement your solution here
+        int len = S.length();
+        int cnt = 0,cntX = 0, cntY = 0;
+        int[] xArr = new int[len];
+        int[] yArr = new int[len];
+        for(int i = 0; i < len ;i++) {
+            char value = S.charAt(i);
+            if(value == 'x') {
+                ++cntX;
+            }
+            if(value == 'y') {
+                ++cntY;
+            }
+            xArr[i] = cntX;
+            yArr[i] = cntY;
+            
+        }
+        
+
+
+        for(int i = 1; i < len ;i++) {
+            int cntX1 = xArr[i-1];
+            int cntY1 = yArr[i-1];
+
+            int cntX2 = cntX - cntX1;
+            int cntY2 = cntY - cntY1;
+    
+
+            if(cntX1 == cntY1 || cntX2 == cntY2) {
+                cnt++;
+            }
+
+        }
+        return cnt;
+    }
+}
