@@ -32,3 +32,30 @@ class Solution {
         return cnt;
     }
 }
+
+//CommonLetter
+// you can also use imports, for example:
+import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int[] solution(String[] S) {
+        // Implement your solution here
+        for(int i = 0; i < S[0].length(); i++) {
+            String strAtIdx = "";
+            for(int k = 0; k < S.length; k++) {
+                char currentChar = S[k].charAt(i);
+                int index = strAtIdx.indexOf(currentChar);
+                if( index >= 0) {
+                    int[] results = new int[]{k, index, i};
+                    return results;
+                } else {
+                    strAtIdx += currentChar;
+                }
+            }
+        }
+        return new int[]{};
+    }
+}
