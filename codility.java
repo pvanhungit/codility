@@ -103,3 +103,48 @@ class Solution {
         return balance == 0 ? cnt : -1;
     }
 }
+
+//TournamentRounds
+// you can also use imports, for example:
+ import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int[] solution(int[] skills) {
+        // Implement your solution here
+        int len = skills.length;
+        int[] results = new int[len];
+        int[] currentIdxArr = new int[len];
+        int[] nextIdxArr = new int[len];
+        int rounds = len;
+        for(int i = 0; i < len ; i++) {
+            nextIdxArr[i] = i;
+        }
+        while(rounds > 1) {
+            currentIdxArr = nextIdxArr;
+            int cnt = 0;
+            for(int i = 0 ; i < rounds; i+=2) {
+                int idx1 = currentIdxArr[i];
+                int idx2 = currentIdxArr[i + 1];
+
+                results[idx1]++;
+                results[idx2]++;
+
+                int skill1 = skills[idx1];
+                int skill2 = skills[idx2];
+
+                if(skill1 > skill2) {
+                    nextIdxArr[cnt++] = idx1;
+                } else {
+                    nextIdxArr[cnt++] = idx2;
+                }
+            }
+            rounds = rounds/2;
+        }
+
+        return results;
+    }
+}
+
