@@ -61,3 +61,22 @@ class Solution {
 }
 
 //LargestSquare
+// you can also use imports, for example:
+import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int solution(int[] A) {
+        // Implement your solution here
+        int len = A.length,start = 0, min = 0;
+        for(int i = 0 ; i < A.length; i++) {
+            min = Math.min(i - start + 1, A[start]);
+            if(i - start + 1 > min) {
+                start++;
+            }
+        }
+        return len - start;
+    }
+}
