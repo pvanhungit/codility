@@ -77,6 +77,7 @@ class Solution {
                 start++;
             }
         }
-        return len - start;
+        //return len - start;
+     // return min;
     }
 }
