@@ -193,3 +193,61 @@ class Solution {
         return cnt;
     }
 }
+
+//FormatArray
+// you can also use imports, for example:
+// import java.util.*;
+
+// you can write to stderr for debugging purposes, e.g.
+// System.err.println("this is a debug message");
+
+class Solution {
+    public void solution(int[] A, int K) {
+        // Implement your solution here
+        int len = A.length, maxLen = 0;
+        String[] numbersArr = new String[len];
+        for(int i = 0 ;i < len ; i++) {
+            String value = String.valueOf(A[i]);
+            numbersArr[i] = value;
+            maxLen = Math.max(value.length(), maxLen);
+        }
+
+        String lineNumbers = "", lineAboves = "", firstLines = "";
+        for(int i = 0 ;i < len ; i++) {
+            String number = numbersArr[i];
+            int remainSpaces = maxLen - number.length();
+            String printNumber = "|" + addChars(remainSpaces, ' ') + number;
+            lineNumbers += printNumber;
+            lineAboves += "+" + addChars(maxLen, '-');
+
+            if(i + 1 <= K) {
+                firstLines += "+" + addChars(maxLen, '-');
+            }
+
+            if( (i + 1 >= K && ( i + 1) % K == 0) || i == len - 1) {
+                //print
+                if(i + 1 <= K) {
+                    firstLines += "+";
+                    System.out.println(firstLines);
+                }
+                lineNumbers += "|";
+                System.out.println(lineNumbers);
+
+                lineAboves += "+";
+                System.out.println(lineAboves);
+
+                //reset
+                lineNumbers = "";
+                lineAboves = "";
+            }
+        }
+    }
+
+    static String addChars(int number, char character) {
+        String rs = "";
+        for(int i = 0 ; i < number ;i++) {
+            rs += character;
+        }
+        return rs;
+    }
+}
