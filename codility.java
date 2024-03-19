@@ -251,3 +251,28 @@ class Solution {
         return rs;
     }
 }
+
+
+//DigitsSum
+// you can also use imports, for example:
+import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public String solution(String S) {
+        // Implement your solution here
+        StringBuilder rs = new StringBuilder("");
+        char firstChar = S.charAt(0);
+        int first = Integer.valueOf(firstChar + "") - 1;
+        if(first > 0) {
+            rs.append(first);
+        }
+        for(int i =  1; i < S.length(); i++) {
+            rs.append("9");
+        }
+        return rs.toString();
+    }
+}
+
