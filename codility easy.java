@@ -276,3 +276,25 @@ class Solution {
     }
 }
 
+//MakeNumbersEqual
+// you can also use imports, for example:
+// import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int solution(int[] A) {
+        // Implement your solution here
+        int len = A.length, cnt = len * 3;
+        for(int avg = 1 ; avg <= 4; avg++) {
+            int currentCnt = 0;
+            for(int i = 0 ; i < len ; i++) {
+                currentCnt += Math.abs(A[i] - avg);
+            }
+            cnt = Math.min(cnt, currentCnt);
+        }
+        return cnt;
+    }
+}
+
