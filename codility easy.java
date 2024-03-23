@@ -298,3 +298,45 @@ class Solution {
     }
 }
 
+//WordMagazine
+// you can also use imports, for example:
+import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int solution(String S, String[] L) {
+        // Implement your solution here
+        int lenS = S.length(), cnt = 0, lenL = L.length;
+        int[] sArr = new int[26];
+        int[][] lArr = new int[lenL][26];
+
+        for(int i = 0; i < lenS; i++) {
+            int idx = S.charAt(i) - 'A';
+            sArr[idx]++;
+        }
+
+        for(int i = 0; i < lenL; i++) {
+            String value = L[i];
+            for(int k = 0; k < value.length(); k++) {
+                int idx = value.charAt(k) - 'A';
+                ++lArr[i][idx];
+            }
+        }
+
+        for(int i = 0; i < lenL; i++) {
+            int[] arr = lArr[i];
+            int minTimes = lenS;
+            for(int k = 0; k < 26; k++) {
+                if(arr[k] > 0) {
+                    minTimes = Math.min(minTimes, sArr[k] / arr[k]);
+                }
+            }
+            cnt = Math.max(cnt, minTimes);
+        }
+
+        return cnt;
+    }
+}
+
