@@ -432,3 +432,32 @@ class Solution {
 }
 
 //PalindromeAnagram
+// you can also use imports, for example:
+import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int solution(String S) {
+        // Implement your solution here
+        int[] arr = new int[26];
+        int cnt = 0, len = S.length();
+        for(int i = 0 ; i < len; i++) {
+            int idx = S.charAt(i) - 'a';
+            arr[idx]++;
+        }
+        boolean hasOne = false;
+
+        for(int i = 0 ; i < 26; i++) {
+            if(arr[i] % 2 == 1) {
+                hasOne = true;
+                cnt += arr[i] - 1;
+            } else {
+                cnt += arr[i];
+            }
+        }
+
+        return hasOne == true ? len - cnt - 1 : len - cnt;
+    }
+}
