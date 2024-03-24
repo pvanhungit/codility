@@ -384,3 +384,51 @@ class Solution {
         return cnt;
     }
 }
+
+//ReplaceByFive
+// you can also use imports, for example:
+import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public String solution(String S, int K) {
+        // Implement your solution here
+        StringBuilder rs = new StringBuilder(S);
+        int len = S.length(), startCntGreater = 0, cntGreater = 0;
+        int[] idxArr = new int[len];
+        for(int i = 0 ; i < len ; i++) {
+            char value = S.charAt(i);
+            int valueInt = Integer.valueOf(value + "");
+
+            if(valueInt == 5) {
+                continue;
+            }
+
+            if(K > 0) {
+                K--;
+                rs.setCharAt(i , '5');
+                if( valueInt > 5) {
+                    idxArr[cntGreater++] = i;
+
+                }
+            } else {
+                if(startCntGreater < cntGreater) {
+                    //revert
+                    int revertIdx = idxArr[startCntGreater++];
+                    rs.setCharAt(revertIdx , S.charAt(revertIdx));
+
+                    //set current to 5
+                    rs.setCharAt(i, '5');
+                    if(valueInt > 5) {
+                        idxArr[cntGreater++] = i;
+                    }
+                }
+            }
+        }
+        return K > 0 ? "IMPOSSIBLE" : rs.toString();
+    }
+}
+
+//PalindromeAnagram
