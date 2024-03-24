@@ -340,3 +340,47 @@ class Solution {
     }
 }
 
+//SmallBeforeLarge
+
+// you can also use imports, for example:
+// import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+class Solution {
+    public int solution(String letters) {
+        // Implement your solution here
+        int[] arr = new int[26];
+        final int lower = 1, upper = 2, skip = 3;
+        int cnt = 0, len = letters.length();
+        for (int i = 0 ; i < len ; i++) {
+            char valueChar = letters.charAt(i);
+            int valueInt = (int)valueChar;
+            int idx = valueInt > 90 ? valueInt - 97 : valueInt - 65;
+            int type = valueInt > 90 ? lower : upper;
+            if(arr[idx] == skip) {
+                continue;
+            }
+            if(arr[idx] == upper && type == lower) {
+                cnt--;
+                arr[idx] = skip;
+                continue;
+            }
+            if(arr[idx] == lower && type == upper) {
+                cnt++;
+                arr[idx] = upper;
+                continue;
+            }
+            if(arr[idx] == 0 && type == lower) {
+                arr[idx] = lower;
+                continue;
+            }
+
+            if(arr[idx] == 0 && type == upper) {
+                arr[idx] = skip;
+                continue;
+            }
+        }
+        return cnt;
+    }
+}
